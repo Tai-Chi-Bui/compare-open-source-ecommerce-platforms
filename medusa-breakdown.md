@@ -1886,6 +1886,7 @@
       - Status tracking
       - Document verification
       - Account activation
+    * Note: Requires custom implementation as Medusa doesn't provide native multi-vendor support
 
   - Store management
     * Management features:
@@ -1903,6 +1904,7 @@
       - Order fulfillment
       - Customer service
       - Analytics tracking
+    * Note: Custom implementation required for vendor-specific storefronts
 
   - Commission handling
     * Commission features:
@@ -1920,6 +1922,7 @@
       - Transaction history
       - Payout tracking
       - Dispute handling
+    * Note: Requires custom implementation for commission tracking and payouts
 
   - Vendor dashboard
     * Dashboard components:
@@ -1937,6 +1940,7 @@
       - Report generation
       - Data export
       - Alert configuration
+    * Note: Custom implementation required for vendor-specific dashboards
 
   - Payment distribution
     * Distribution features:
@@ -1954,65 +1958,73 @@
       - Payment tracking
       - Reconciliation
       - Reporting
+    * Note: Requires custom implementation for vendor payment distribution
 
 - **Implementation**:
   ```typescript
-  // Example of comprehensive marketplace management
-  const marketplaceService = req.scope.resolve("marketplaceService")
+  // Example of custom marketplace implementation
+  // Note: This is a conceptual example showing how to extend Medusa
+  // for multi-vendor support. Actual implementation requires custom development.
   
-  // Register new vendor
-  const vendor = await marketplaceService.registerVendor({
-    user_id: "user_123",
-    store: {
-      name: "Vendor Store",
-      handle: "vendor-store",
-      metadata: {
-        business_type: "retail",
-        tax_id: "TAX123"
-      }
-    },
-    documents: [
-      {
-        type: "business_license",
-        url: "https://example.com/license.pdf"
-      }
-    ]
-  })
-
-  // Configure commission
-  await marketplaceService.setCommission({
-    vendor_id: vendor.id,
-    rate: 0.1, // 10% commission
-    type: "percentage",
-    metadata: {
-      effective_from: new Date(),
-      minimum_amount: 1000
+  class MarketplaceService extends TransactionBaseService {
+    constructor(container) {
+      super(container)
+      this.storeService_ = container.storeService
+      this.userService_ = container.userService
+      this.paymentService_ = container.paymentService
     }
-  })
 
-  // Process vendor payout
-  await marketplaceService.processPayout({
-    vendor_id: vendor.id,
-    amount: 10000,
-    currency: "USD",
-    method: "bank_transfer",
-    metadata: {
-      period: "2024-01",
-      transaction_count: 50
+    async registerVendor(data) {
+      return await this.atomicPhase_(async (manager) => {
+        // Create vendor user
+        const user = await this.userService_.create({
+          email: data.email,
+          password: data.password,
+          role: "vendor"
+        })
+
+        // Create vendor store
+        const store = await this.storeService_.create({
+          name: data.store_name,
+          owner_id: user.id,
+          metadata: {
+            vendor_type: "approved",
+            commission_rate: 0.1
+          }
+        })
+
+        return { user, store }
+      })
     }
-  })
 
-  // Get vendor analytics
-  const analytics = await marketplaceService.getVendorAnalytics({
-    vendor_id: vendor.id,
-    period: "last_30_days",
-    metrics: [
-      "total_sales",
-      "order_count",
-      "commission_amount",
-      "customer_count"
-    ]
-  })
+    async processVendorOrder(order) {
+      return await this.atomicPhase_(async (manager) => {
+        // Calculate vendor commission
+        const commission = this.calculateCommission(order)
+        
+        // Process vendor payment
+        await this.paymentService_.create({
+          amount: order.total - commission,
+          currency_code: order.currency_code,
+          provider_id: "vendor_payout",
+          data: {
+            vendor_id: order.metadata.vendor_id,
+            order_id: order.id
+          }
+        })
+
+        return { commission, order }
+      })
+    }
+
+    calculateCommission(order) {
+      // Custom commission calculation logic
+      return order.total * 0.1 // 10% commission
+    }
+  }
+
+  // Register custom service
+  container.register("marketplaceService", MarketplaceService)
   ```
 
 ## 8. Customization & Extension Module
