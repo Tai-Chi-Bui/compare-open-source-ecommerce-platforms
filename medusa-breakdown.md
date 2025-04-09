@@ -1,5 +1,243 @@
 # Medusa E-commerce Platform: Detailed Module Breakdown
 
+## Storefront Templates
+
+### Template Features
+- **Core Features**:
+  * Product Browsing
+    - Product listing: Display products in grid or list view with pagination and infinite scroll support
+    - Product filtering: Filter products by categories, attributes, price ranges, and custom filters
+    - Product search: Advanced search functionality with autocomplete and search suggestions
+    - Product sorting: Sort products by price, popularity, date, and custom attributes
+    - Product comparison: Compare multiple products side by side with detailed specifications
+    - Product recommendations: Show related products, frequently bought together, and personalized recommendations
+    - Recently viewed: Track and display recently viewed products for quick access
+    - Wishlist integration: Allow users to save products to wishlists for future reference
+    * Missing Features:
+      - 3D product visualization
+      - AR product preview
+      - Video product demonstrations
+      - Product customization tools
+      - Bulk product comparison
+      - Product bundle creation
+      - Product subscription options
+      - Product availability alerts
+      - Product waitlist functionality
+      - Product pre-order system
+
+  * Cart Management
+    - Add to cart: Add products to cart with quantity selection and variant options
+    - Update quantities: Modify product quantities in cart with real-time price updates
+    - Remove items: Remove products from cart with confirmation and undo options
+    - Cart persistence: Save cart state across sessions and devices
+    - Cart validation: Validate product availability, pricing, and shipping options
+    - Cross-sell suggestions: Show related products and accessories in cart
+    - Cart sharing: Share cart contents via email or social media
+    - Bulk operations: Add multiple products or update quantities in bulk
+    * Missing Features:
+      - Cart abandonment recovery
+      - Cart price alerts
+      - Cart split functionality
+      - Cart save for later
+      - Cart gift wrapping options
+      - Cart gift messaging
+      - Cart scheduled delivery
+      - Cart recurring items
+      - Cart bulk discounts
+      - Cart loyalty points integration
+
+  * Checkout Process
+    - Multi-step checkout: Guide users through checkout with clear progress indicators
+    - Guest checkout: Allow purchases without account creation
+    - Address validation: Validate shipping and billing addresses in real-time
+    - Shipping calculation: Calculate shipping costs based on location and delivery options
+    - Payment processing: Process payments securely with multiple payment methods
+    - Order review: Review order details before final submission
+    - Order confirmation: Show order confirmation with tracking information
+    - Error handling: Display clear error messages and recovery options
+    * Missing Features:
+      - One-click checkout
+      - Split payment options
+      - Gift card redemption
+      - Store credit application
+      - Loyalty points redemption
+      - Subscription checkout
+      - Group checkout
+      - Scheduled checkout
+      - Partial payment options
+      - Payment plan setup
+
+  * User Authentication
+    - Login/Register: Secure user authentication with email/password or social login
+    - Social login: Support for Google, Facebook, and other social providers
+    - Password reset: Secure password reset flow with email verification
+    - Email verification: Verify user email addresses for security
+    - Account management: Manage user profile, preferences, and security settings
+    - Session handling: Manage user sessions with secure tokens
+    - Security measures: Implement 2FA, password policies, and security alerts
+    - Profile customization: Allow users to customize their profile and preferences
+    * Missing Features:
+      - Biometric authentication
+      - Single sign-on (SSO)
+      - Account merging
+      - Account deletion
+      - Data export
+      - Privacy settings
+      - Activity history
+      - Account recovery options
+      - Session management
+      - Device management
+
+- **UI Components**:
+  * Product Display
+    - Product cards: Display product information in a compact, visually appealing format
+    - Product grids: Organize products in responsive grid layouts
+    - Product lists: Show products in list format with detailed information
+    - Product detail pages: Comprehensive product pages with images, descriptions, and options
+    - Image galleries: Interactive image galleries with zoom and thumbnails
+    - Variant selection: Select product variants with visual previews
+    - Price display: Show prices with currency formatting and sale indicators
+    - Stock status: Display real-time stock availability and backorder options
+    * Missing Features:
+      - 360-degree product view
+      - Product video integration
+      - Product AR preview
+      - Product customization interface
+      - Product bundle display
+      - Product subscription options
+      - Product availability calendar
+      - Product social proof
+      - Product expert reviews
+      - Product Q&A section
+
+  * Navigation
+    - Main menu: Hierarchical navigation with dropdown support
+    - Category navigation: Browse products by categories and subcategories
+    - Breadcrumbs: Show current location in site hierarchy
+    - Search bar: Quick access to product search with suggestions
+    - Filters: Filter products by multiple attributes simultaneously
+    - Sort options: Sort products by various criteria
+    - Mobile menu: Responsive navigation optimized for mobile devices
+    - Quick links: Access important pages and features quickly
+    * Missing Features:
+      - Voice navigation
+      - Gesture navigation
+      - Personalized navigation
+      - Recent searches
+      - Saved searches
+      - Navigation history
+      - Category recommendations
+      - Dynamic menu items
+      - Navigation analytics
+      - A/B testing for navigation
+
+  * Interactive Elements
+    - Add to cart button: Clear call-to-action for adding products to cart
+    - Quantity selector: Adjust product quantities with increment/decrement controls
+    - Wishlist button: Save products to wishlists with one click
+    - Compare button: Add products to comparison list
+    - Share buttons: Share products on social media platforms
+    - Rating system: Display and collect product ratings
+    - Review system: Show and manage product reviews
+    - Size guide: Help users select correct product sizes
+    * Missing Features:
+      - Quick view functionality
+      - Product comparison overlay
+      - Social proof notifications
+      - Live chat integration
+      - Product expert chat
+      - Virtual try-on
+      - Size recommendation
+      - Color swatch selector
+      - Material selector
+      - Customization preview
+
+- **Performance**:
+  * Optimization
+    - Image optimization: Automatically optimize and serve responsive images
+    - Code splitting: Split code into smaller chunks for faster loading
+    - Lazy loading: Load content as needed to improve initial load time
+    - Caching strategies: Implement effective caching for static and dynamic content
+    - Bundle optimization: Optimize JavaScript and CSS bundles
+    - Asset compression: Compress assets for faster delivery
+    - Critical CSS: Load critical CSS inline for faster rendering
+    - Service workers: Enable offline functionality and background sync
+    * Missing Features:
+      - Edge caching
+      - CDN optimization
+      - Dynamic imports
+      - Prefetching
+      - Prerendering
+      - WebP image support
+      - AVIF image support
+      - Web font optimization
+      - Third-party script optimization
+      - Performance budget monitoring
+
+  * Monitoring
+    - Performance metrics: Track key performance indicators
+    - Error tracking: Monitor and report errors in real-time
+    - User analytics: Track user behavior and interactions
+    - Resource monitoring: Monitor server and client resources
+    - Speed insights: Analyze and optimize page load times
+    - Core Web Vitals: Monitor and improve core web vitals metrics
+    - Load time optimization: Optimize various aspects of page loading
+    - Resource hints: Use resource hints for faster resource loading
+    * Missing Features:
+      - Real-time performance monitoring
+      - User experience scoring
+      - Performance regression detection
+      - Automated performance testing
+      - Performance alerting
+      - Resource usage tracking
+      - Third-party impact analysis
+      - Mobile performance monitoring
+      - Network condition simulation
+      - Performance reporting
+
+- **Customization**:
+  * Theme System
+    - Color schemes: Define and manage color palettes
+    - Typography: Manage fonts, sizes, and styles
+    - Spacing system: Consistent spacing and layout
+    - Component styles: Customize component appearance
+    - Dark mode: Support for dark theme
+    - Custom themes: Create and switch between themes
+    - Style overrides: Override default styles
+    - Design tokens: Manage design system tokens
+    * Missing Features:
+      - Theme presets
+      - Theme versioning
+      - Theme inheritance
+      - Theme preview
+      - Theme export/import
+      - Theme marketplace
+      - Theme documentation
+      - Theme testing tools
+      - Theme performance analysis
+      - Theme accessibility checker
+
+  * Layout
+    - Grid system: Responsive grid layouts
+    - Breakpoint system: Define responsive breakpoints
+    - Page templates: Reusable page layouts
+    - Component layouts: Flexible component arrangements
+    - Header/footer: Customizable header and footer
+    - Sidebars: Configurable sidebar layouts
+    - Modal system: Customizable modal dialogs
+    - Toast notifications: System for displaying notifications
+    * Missing Features:
+      - Drag-and-drop layout builder
+      - Layout presets
+      - Layout versioning
+      - Layout preview
+      - Layout export/import
+      - Layout analytics
+      - Layout A/B testing
+      - Layout documentation
+      - Layout performance analysis
+      - Layout accessibility checker
+
 ## 1. Core Commerce Module
 
 ### Product Management
@@ -2433,7 +2671,56 @@
    npx create-medusa-app@latest my-medusa-store
    ```
 
-2. **Basic Configuration**
+2. **Storefront Templates**
+   - **Default Templates**:
+     * Next.js Storefront
+       - Modern React-based storefront
+       - Server-side rendering
+       - Responsive design
+       - Built-in performance optimization
+     * Gatsby Storefront
+       - Static site generation
+       - Fast performance
+       - SEO optimized
+       - Progressive web app support
+     * Custom Storefront
+       - Headless architecture
+       - API-first approach
+       - Flexible customization
+       - Framework agnostic
+
+   - **Template Features**:
+     * Core Features:
+       - Product browsing
+       - Cart management
+       - Checkout process
+       - User authentication
+     * UI Components:
+       - Product cards
+       - Category navigation
+       - Search functionality
+       - Filtering system
+     * Performance:
+       - Image optimization
+       - Code splitting
+       - Caching strategies
+       - Lazy loading
+     * Customization:
+       - Theme system
+       - Component overrides
+       - Style customization
+       - Layout modification
+
+   - **Setup Process**:
+     ```bash
+     # Create new project with Next.js template
+     npx create-medusa-app@latest my-medusa-store --template nextjs
+     
+     # Or with Gatsby template
+     npx create-medusa-app@latest my-medusa-store --template gatsby
+     ```
+
+3. **Basic Configuration**
    ```typescript
    // medusa-config.js
    module.exports = {
@@ -2444,13 +2731,53 @@
        store_cors: STORE_CORS,
        admin_cors: ADMIN_CORS,
      },
-     plugins: []
+     plugins: [
+       // Add required plugins
+       "medusa-fulfillment-manual",
+       "medusa-payment-manual",
+       // Add custom plugins
+     ]
    }
    ```
 
-3. **Running the Server**
+4. **Running the Server**
    ```bash
+   # Start the backend server
    medusa develop
+   
+   # Start the storefront (Next.js)
+   cd my-medusa-store
+   npm run dev
+   
+   # Start the storefront (Gatsby)
+   npm run develop
    ```
+
+5. **Customization Options**:
+   - **Theme Customization**:
+     * Color schemes
+     * Typography
+     * Layout components
+     * Responsive breakpoints
+   - **Component Overrides**:
+     * Product display
+     * Cart interface
+     * Checkout flow
+     * User dashboard
+   - **Feature Extensions**:
+     * Custom pages
+     * Additional routes
+     * New components
+     * API integrations
+
+6. **Best Practices**:
+   - Use environment variables for configuration
+   - Implement proper error handling
+   - Follow responsive design principles
+   - Optimize images and assets
+   - Implement proper caching
+   - Use TypeScript for type safety
+   - Follow component composition patterns
+   - Implement proper state management
 
 This breakdown provides a comprehensive overview of Medusa's features and implementation details. Each module can be customized and extended based on specific business requirements.
