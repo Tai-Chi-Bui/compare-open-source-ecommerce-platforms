@@ -1886,7 +1886,11 @@
       - Status tracking
       - Document verification
       - Account activation
-    * Note: Requires custom implementation as Medusa doesn't provide native multi-vendor support
+    * Note: Requires custom implementation as Medusa doesn't provide native multi-vendor support. This includes:
+      - Custom vendor registration flow
+      - Custom vendor profile management
+      - Custom document verification system
+      - Custom store setup process
 
   - Store management
     * Management features:
@@ -1904,7 +1908,11 @@
       - Order fulfillment
       - Customer service
       - Analytics tracking
-    * Note: Custom implementation required for vendor-specific storefronts
+    * Note: Custom implementation required for:
+      - Vendor-specific storefronts
+      - Vendor product management
+      - Vendor order handling
+      - Vendor analytics
 
   - Commission handling
     * Commission features:
@@ -1922,7 +1930,11 @@
       - Transaction history
       - Payout tracking
       - Dispute handling
-    * Note: Requires custom implementation for commission tracking and payouts
+    * Note: Requires custom implementation for:
+      - Commission calculation logic
+      - Transaction tracking system
+      - Payout processing
+      - Dispute resolution
 
   - Vendor dashboard
     * Dashboard components:
@@ -1940,7 +1952,11 @@
       - Report generation
       - Data export
       - Alert configuration
-    * Note: Custom implementation required for vendor-specific dashboards
+    * Note: Custom implementation required for:
+      - Vendor-specific dashboard UI
+      - Vendor analytics
+      - Vendor reporting
+      - Vendor notifications
 
   - Payment distribution
     * Distribution features:
@@ -1958,7 +1974,11 @@
       - Payment tracking
       - Reconciliation
       - Reporting
-    * Note: Requires custom implementation for vendor payment distribution
+    * Note: Requires custom implementation for:
+      - Payment collection system
+      - Commission deduction logic
+      - Vendor payout processing
+      - Transaction tracking
 
 - **Implementation**:
   ```typescript
@@ -1972,25 +1992,36 @@
       this.storeService_ = container.storeService
       this.userService_ = container.userService
       this.paymentService_ = container.paymentService
+      this.eventBusService_ = container.eventBusService
     }
 
     async registerVendor(data) {
       return await this.atomicPhase_(async (manager) => {
-        // Create vendor user
+        // Create vendor user with custom role
         const user = await this.userService_.create({
           email: data.email,
           password: data.password,
-          role: "vendor"
+          metadata: {
+            role: "vendor",
+            status: "pending"
+          }
         })
 
-        // Create vendor store
+        // Create vendor store with custom metadata
         const store = await this.storeService_.create({
           name: data.store_name,
           owner_id: user.id,
           metadata: {
             vendor_type: "approved",
-            commission_rate: 0.1
+            commission_rate: 0.1,
+            status: "pending"
           }
+        })
+
+        // Emit vendor registration event
+        await this.eventBusService_.emit("vendor.registered", {
+          vendor_id: user.id,
+          store_id: store.id
         })
 
         return { user, store }
@@ -2009,8 +2040,17 @@
           provider_id: "vendor_payout",
           data: {
             vendor_id: order.metadata.vendor_id,
-            order_id: order.id
+            order_id: order.id,
+            commission: commission
           }
+        })
+
+        // Emit vendor payment event
+        await this.eventBusService_.emit("vendor.payment.processed", {
+          order_id: order.id,
+          vendor_id: order.metadata.vendor_id,
+          amount: order.total - commission,
+          commission: commission
         })
 
         return { commission, order }
@@ -2019,7 +2059,8 @@
 
     calculateCommission(order) {
       // Custom commission calculation logic
-      return order.total * 0.1 // 10% commission
+      const store = await this.storeService_.retrieve(order.metadata.store_id)
+      return order.total * (store.metadata.commission_rate || 0.1)
     }
   }
 
