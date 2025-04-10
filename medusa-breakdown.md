@@ -9,10 +9,6 @@
     - Product filtering: Filter products by categories, attributes, price ranges, and custom filters
     - Product search: Advanced search functionality with autocomplete and search suggestions
     - Product sorting: Sort products by price, popularity, date, and custom attributes
-    - Product comparison: Compare multiple products side by side with detailed specifications
-    - Product recommendations: Show related products, frequently bought together, and personalized recommendations
-    - Recently viewed: Track and display recently viewed products for quick access
-    - Wishlist integration: Allow users to save products to wishlists for future reference
     * Missing Features:
       - 3D product visualization
       - AR product preview
