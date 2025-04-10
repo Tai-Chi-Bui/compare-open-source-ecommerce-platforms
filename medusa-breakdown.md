@@ -27,9 +27,6 @@
     - Remove items: Remove products from cart with confirmation and undo options
     - Cart persistence: Save cart state across sessions and devices
     - Cart validation: Validate product availability, pricing, and shipping options
-    - Cross-sell suggestions: Show related products and accessories in cart
-    - Cart sharing: Share cart contents via email or social media
-    - Bulk operations: Add multiple products or update quantities in bulk
     * Missing Features:
       - Cart abandonment recovery
       - Cart price alerts
@@ -65,9 +62,7 @@
 
   * User Authentication
     - Login/Register: Secure user authentication with email/password or social login
-    - Social login: Support for Google, Facebook, and other social providers
     - Password reset: Secure password reset flow with email verification
-    - Email verification: Verify user email addresses for security
     - Account management: Manage user profile, preferences, and security settings
     - Session handling: Manage user sessions with secure tokens
     - Security measures: Implement 2FA, password policies, and security alerts
@@ -129,13 +124,6 @@
 
   * Interactive Elements
     - Add to cart button: Clear call-to-action for adding products to cart
-    - Quantity selector: Adjust product quantities with increment/decrement controls
-    - Wishlist button: Save products to wishlists with one click
-    - Compare button: Add products to comparison list
-    - Share buttons: Share products on social media platforms
-    - Rating system: Display and collect product ratings
-    - Review system: Show and manage product reviews
-    - Size guide: Help users select correct product sizes
     * Missing Features:
       - Quick view functionality
       - Product comparison overlay
